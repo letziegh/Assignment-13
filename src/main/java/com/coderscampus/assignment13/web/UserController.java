@@ -79,7 +79,7 @@ public class UserController {
 //	}
 	@GetMapping("/users/{userId}/accounts/{accountId}")
 	public String getAccountDetails(@PathVariable Long userId, @PathVariable Long accountId, Model model) {
-		Account account = accountService.findAccountById(accountId);
+		Account account = accountService.findAccountByAccountId(accountId);
 		model.addAttribute("account", account);
 		return "account";
 	}

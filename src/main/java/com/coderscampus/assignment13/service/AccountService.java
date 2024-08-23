@@ -15,7 +15,7 @@ public class AccountService {
     UserRepository userRepository;
 
 
-    public Account findAccountById(Long accountId) {
+    public Account findAccountByAccountId(Long accountId) {
         return accountRepository.findById (accountId).orElse(null);
     }//Issue might here in this method
 
