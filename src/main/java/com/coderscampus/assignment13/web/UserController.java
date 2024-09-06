@@ -75,11 +75,26 @@ public class UserController {
 		userService.delete(userId);
 		return "redirect:/users";
 	}
-	@PostMapping("/users/{userId}/accounts")
-	public String createNewAccount(@PathVariable Long userId) {
+	@PostMapping("/users/{userId}/accounts/new")
+	public String createNewAccount(@PathVariable Long userId, @RequestParam(value = "name", required = false) String name, Model model) {
+		if (name == null || name.isEmpty()) {
+			// No name provided, so show the account creation page
+			model.addAttribute("userId", userId);
+			model.addAttribute("account", null); // Ensure it's null for the creation page
+			return "account-form"; // Return the account form template
+		}
+
+		// If the name is provided, create the account
 		accountService.createNewAccount(userId, name);
 		return "redirect:/users/" + userId;
 	}
+
+	//	@PostMapping("/users/{userId}/accounts/new")
+//	public String createNewAccount(@PathVariable Long userId, @RequestParam (value = "name", required = false) String name ) {
+//		accountService.createNewAccount(userId, name);
+//		//model.addAttribute("user", userService.findById(userId));
+//		return "redirect:/users/" + userId;
+//	}
 	@GetMapping("/users/{userId}/accounts/{accountId}")
 	public String getAccountDetails(@PathVariable Long userId, @PathVariable Long accountId, Model model) {
 		Account account = accountService.findAccountByAccountId(accountId);

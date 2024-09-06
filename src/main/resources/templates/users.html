@@ -54,12 +54,13 @@
     <h2>Accounts</h2>
 
     <div th:each="account:${user.accounts}">
-<!--        <span th:text="${account.accountName}"></span>-->
         <a th:href="@{'/users/{userId}/accounts/{accountId}'(userId=${user.userId},accountId=${account.accountId})}" th:text="${account.accountName}"></a>
-
     </div>
 <br>
-    <div><input type="submit" value="Create New Bank Account"/></div>
+    <form th:action="@{/users/{userId}/accounts/new(userId=${user.userId})}" method="post">
+        <button type="submit">Create New Bank Account</button>
+    </form>
+<!--    <div><input type="submit" value="Create New Bank Account"/></div>-->
     <!--</form>--><br>
     <span> <a th:href="@{/users}">Back</a> </span>
 
