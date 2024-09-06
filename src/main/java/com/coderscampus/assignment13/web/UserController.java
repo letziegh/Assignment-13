@@ -75,19 +75,30 @@ public class UserController {
 		userService.delete(userId);
 		return "redirect:/users";
 	}
+	@GetMapping("/users/{userId}/accounts/new")
+	public String showNewAccountForm(@PathVariable Long userId, Model model) {
+		model.addAttribute("userId", userId); // Pass the userId to the form
+		model.addAttribute("account", null); // New account object for the form
+		return "account-form"; // Account creation form template (Thymeleaf view)
+	}
 	@PostMapping("/users/{userId}/accounts/new")
-	public String createNewAccount(@PathVariable Long userId, @RequestParam(value = "name", required = false) String name, Model model) {
-		if (name == null || name.isEmpty()) {
-			// No name provided, so show the account creation page
-			model.addAttribute("userId", userId);
-			model.addAttribute("account", null); // Ensure it's null for the creation page
-			return "account-form"; // Return the account form template
-		}
+	public String createNewAccount(@PathVariable Long userId, @RequestParam("name") String accountName) {
+		accountService.createNewAccount(userId, accountName);
+		return "redirect:/users/" + userId; // Redirect back to the user page after creation
+	}
+//	@PostMapping("/users/{userId}/accounts/new")
+//	public String createNewAccount(@PathVariable Long userId, @RequestParam(value = "name", required = false) String name, Model model) {
+//		if (name == null || name.isEmpty()) {
+//			// No name provided, so show the account creation page
+//			model.addAttribute("userId", userId);
+//			model.addAttribute("account", null); // Ensure it's null for the creation page
+//			return "account-form"; // Return the account form template
+//		}
 
 		// If the name is provided, create the account
-		accountService.createNewAccount(userId, name);
-		return "redirect:/users/" + userId;
-	}
+//		accountService.createNewAccount(userId, name);
+//		return "redirect:/users/" + userId;
+//	}
 
 	//	@PostMapping("/users/{userId}/accounts/new")
 //	public String createNewAccount(@PathVariable Long userId, @RequestParam (value = "name", required = false) String name ) {
@@ -99,7 +110,7 @@ public class UserController {
 	public String getAccountDetails(@PathVariable Long userId, @PathVariable Long accountId, Model model) {
 		Account account = accountService.findAccountByAccountId(accountId);
 		model.addAttribute("account", account);
-		return "account";
+		return "account-form";
 	}
 
 	@PostMapping("/users/{userId}/accounts/{accountId}")

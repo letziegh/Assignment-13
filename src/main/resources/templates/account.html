@@ -28,12 +28,23 @@
 <h1 th:if="${account == null}">Create New Account</h1>
 <h1 th:if="${account != null}">Account Details</h1>
 
-<!-- For creating a new account -->
+
+
 <form th:action="@{/users/{userId}/accounts/new(userId=${userId})}" th:if="${account == null}" method="post">
     <label for="new-account-name">Account Name:</label>
-    <input type="text" id="new-account-name" name="name" placeholder="Enter Account Name" />
+    <input type="text" id="new-account-name" name="name" placeholder="Enter Account Name" required />
     <button type="submit">Create Account</button>
 </form>
+
+<hr>
+<!--<span><a th:href="@{/users/{userId}(userId=${userId})}">Back to User Page</a></span>-->
+
+<!-- For creating a new account -->
+<!--<form th:action="@{/users/{userId}/accounts/new(userId=${userId})}" th:if="${account == null}" method="post">-->
+<!--    <label for="new-account-name">Account Name:</label>-->
+<!--    <input type="text" id="new-account-name" name="name" placeholder="Enter Account Name" />-->
+<!--    <button type="submit">Create Account</button>-->
+<!--</form>-->
 
 <!-- For editing an existing account -->
 <form th:action="@{/users/{userId}/accounts/{accountId}(userId=${userId}, accountId=${account.accountId})}" th:unless="${account == null}" method="post">
