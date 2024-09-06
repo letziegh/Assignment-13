@@ -1,11 +1,6 @@
 package com.coderscampus.assignment13.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Address {
@@ -19,6 +14,7 @@ public class Address {
 	private String zipCode;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getUserId() {
 		return userId;
 	}
@@ -26,7 +22,7 @@ public class Address {
 		this.userId = userId;
 	}
 	
-	@OneToOne
+	@OneToOne//(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@MapsId
 	@JoinColumn(name="user_id")
 	public User getUser() {

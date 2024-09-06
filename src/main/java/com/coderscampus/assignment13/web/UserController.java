@@ -63,7 +63,10 @@ public class UserController {
 	
 	@PostMapping("/users/{userId}")
 	public String postOneUser (User user) {
-		userService.saveUser(user);
+		//userService.saveUser(user);
+		userService.updateUser(user);
+		System.out.println(user.getUsername());
+		System.out.println(user.getPassword());
 		return "redirect:/users/"+user.getUserId();
 	}
 	
@@ -72,11 +75,11 @@ public class UserController {
 		userService.delete(userId);
 		return "redirect:/users";
 	}
-//	@PostMapping("/users/{userId}/accounts")
-//	public String createNewAccount(@PathVariable Long userId) {
-//		accountService.createNewAccount(userId);
-//		return "redirect:/users/" + userId;
-//	}
+	@PostMapping("/users/{userId}/accounts")
+	public String createNewAccount(@PathVariable Long userId) {
+		accountService.createNewAccount(userId, name);
+		return "redirect:/users/" + userId;
+	}
 	@GetMapping("/users/{userId}/accounts/{accountId}")
 	public String getAccountDetails(@PathVariable Long userId, @PathVariable Long accountId, Model model) {
 		Account account = accountService.findAccountByAccountId(accountId);
@@ -87,7 +90,7 @@ public class UserController {
 	@PostMapping("/users/{userId}/accounts/{accountId}")
 	public String updateAccountName(@PathVariable Long userId, @PathVariable Long accountId, @RequestParam String name) {
 		accountService.updateAccountName(accountId, name);
-		return "redirect:/users/" + userId;
+		return "redirect:/users/" + userId ;
 	}
 
 }

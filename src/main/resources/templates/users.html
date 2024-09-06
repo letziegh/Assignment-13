@@ -9,30 +9,33 @@
 <div th:if="${#lists.size(users)==1}">
 <form action="" method="post">
 <div>
-    Username:<input type="text" th:field="${user.username}"/>
+    Username:<input type="text" th:field="${user.username}" placeholder= ""/>
 </div>
 <div>
-    Password:<input type="password" th:field="${user.password}"/>
+    Password:<input type="password" th:field="${user.password}" placeholder= "password"/>
 </div>
 <div>
-    Full Name:<input type="text" th:field="${user.name}"/>
+    Full Name:<input type="text" th:field="${user.name}" placeholder= "Name"/>
 </div>
     <hr>
 
     <div>
-        Address Line 1: <input type="text" th:field="${user.address.addressLine1}" /> <!-- Editable address -->
+        Address Line 1: <input type="text" th:field="${user.address.addressLine1}" placeholder= "" /> <!-- Editable address -->
     </div>
     <div>
-        Address Line 2: <input type="text" th:field="${user.address.addressLine2}" /> <!-- Editable address -->
+        Address Line 2: <input type="text" th:field="${user.address.addressLine2}" placeholder= ""/>
     </div>
     <div>
-        City: <input type="text"th:field="${user.address.city}" /> <!-- Editable address -->
+        City: <input type="text"th:field="${user.address.city}" placeholder= "" />
     </div>
     <div>
-        Region: <input type="text" th:field="${user.address.region}" /> <!-- Editable address -->
+        Region: <input type="text" th:field="${user.address.region}" placeholder= "" />
     </div>
     <div>
-        Country: <input type="text" th:field="${user.address.country}" /> <!-- Editable address -->
+        Country: <input type="text" th:field="${user.address.country}" placeholder= "" />
+    </div>
+    <div>
+        Zip Code: <input type="text" th:field="${user.address.zipCode}" placeholder= ""/>
     </div>
 
 
@@ -72,8 +75,8 @@
 <span th:text="${user.password}"></span>
 <div th:each="account:${user.accounts}">
 <!--<span th:text="${account.accountName}"></span>-->
-    <a th:href="@{'/users/{userId}/accounts/{accountId}'(userId=${user.userId},accountId=${account.accountId})}" th:text="${account.accountName}"></a>
-
+    <a th:href="@{'/users/{userId}/accounts/{accountId}'(userId=${user.userId}, accountId=${account.accountId})}" th:text="${account.accountName}"></a>
+<!--    <a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}" th:text="${account.accountName}"></a>-->
 
 
 </div>
