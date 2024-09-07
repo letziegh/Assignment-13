@@ -60,8 +60,8 @@
     <form th:action="@{/users/{userId}/accounts/new(userId=${user.userId})}" method="get">
         <button type="submit">Create New Bank Account</button>
     </form>
-<!--    <div><input type="submit" value="Create New Bank Account"/></div>-->
-    <!--</form>--><br>
+
+    <br>
     <span> <a th:href="@{/users}">Back</a> </span>
 
 </div>
@@ -69,30 +69,24 @@
 <div th:unless="${#lists.size(users)==1}" th:each="user:${users}">
     <span> <a th:href="@{/users/{userId}(userId=${user.userId})}" th:text="${user.userId}"></a> </span><br/>
 
-<!--<spanth:text="${user.userId}"></span><br/>-->
+
 <span th:text="${user.username}"></span><br/>
 <span th:text="${user.name}"></span><br/>
 
 <span th:text="${user.password}"></span>
 <div th:each="account:${user.accounts}">
-<!--<span th:text="${account.accountName}"></span>-->
+
     <a th:href="@{'/users/{userId}/accounts/{accountId}'(userId=${user.userId}, accountId=${account.accountId})}" th:text="${account.accountName}"></a>
-<!--    <a th:href="@{/users/{userId}/accounts/{accountId}(userId=${user.userId}, accountId=${account.accountId})}" th:text="${account.accountName}"></a>-->
+
 
 
 </div>
 <hr/>
 
-<!--<div th:each="account:${user.accounts}">-->
-<!--<a th:href="@{'/users/{userId}/accounts/{accountId}'(userId=${user.userId},accountId=${account.accountId})}"th:text="${account.accountName}"></a>-->
-<!--</div>-->
+
 
 
 </div>
-<!--<formth:action="@{/users/{userId}/accounts(userId=${user.userId})}"method="post">-->
 
-
-<!--</form>--><br>
-<!--<span> <a th:href="@{/users}">Back</a> </span>-->
 </body>
 </html>

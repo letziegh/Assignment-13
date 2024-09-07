@@ -1,24 +1,3 @@
-<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
-<!--&lt;!&ndash;<html xmlns:th="http://www.thymeleaf.org">&ndash;&gt;-->
-<!--&lt;!&ndash;<head>&ndash;&gt;-->
-<!--&lt;!&ndash;    <title>Account Details</title>&ndash;&gt;-->
-<!--&lt;!&ndash;</head>&ndash;&gt;-->
-<!--&lt;!&ndash;<body>&ndash;&gt;-->
-<!--&lt;!&ndash;<h1>Account Details</h1>&ndash;&gt;-->
-
-
-<!--&lt;!&ndash;<form th:action="@{/users/{userId}/accounts/{accountId}(userId=${userId}, accountId=${accountId})}" method="post">&ndash;&gt;-->
-<!--&lt;!&ndash;    <label for="name">Account Name:</label>&ndash;&gt;-->
-<!--&lt;!&ndash;    <input type="text" id="name" name="name" th:value="${account.accountName}" placeholder=""/>&ndash;&gt;-->
-<!--&lt;!&ndash;    <button type="submit">Save Account</button>&ndash;&gt;-->
-<!--&lt;!&ndash;</form>&ndash;&gt;-->
-<!--&lt;!&ndash;<hr>&ndash;&gt;-->
-<!--&lt;!&ndash;<span> <a th:href="@{/users}"> Back </a></span>&ndash;&gt;-->
-
-<!--&lt;!&ndash;</body>&ndash;&gt;-->
-<!--&lt;!&ndash;</html>&ndash;&gt;-->
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -37,16 +16,7 @@
 </form>
 
 <hr>
-<!--<span><a th:href="@{/users/{userId}(userId=${userId})}">Back to User Page</a></span>-->
 
-<!-- For creating a new account -->
-<!--<form th:action="@{/users/{userId}/accounts/new(userId=${userId})}" th:if="${account == null}" method="post">-->
-<!--    <label for="new-account-name">Account Name:</label>-->
-<!--    <input type="text" id="new-account-name" name="name" placeholder="Enter Account Name" />-->
-<!--    <button type="submit">Create Account</button>-->
-<!--</form>-->
-
-<!-- For editing an existing account -->
 <form th:action="@{/users/{userId}/accounts/{accountId}(userId=${userId}, accountId=${account.accountId})}" th:unless="${account == null}" method="post">
     <label for="existing-account-name">Account Name:</label>
     <input type="text" id="existing-account-name" name="name" th:value="${account.accountName}" />
