@@ -90,7 +90,10 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         existingUser.setUsername(user.getUsername());
-        existingUser.setPassword(user.getPassword());
+        // Only update the password if it's not null or empty
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            existingUser.setPassword(user.getPassword());
+        }
         existingUser.setName(user.getName());
 
         Address address = existingUser.getAddress();
@@ -102,7 +105,11 @@ public class UserService {
 
 
         address.setAddressLine1(user.getAddress().getAddressLine1());
+        address.setAddressLine2(user.getAddress().getAddressLine2());
         address.setCity(user.getAddress().getCity());
+        address.setRegion(user.getAddress().getRegion());
+        address.setCountry(user.getAddress().getCountry());
+        address.setZipCode(user.getAddress().getZipCode());
 
         addressRepo.save(address);
 
